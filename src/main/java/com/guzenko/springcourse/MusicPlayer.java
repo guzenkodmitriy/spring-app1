@@ -1,5 +1,6 @@
 package com.guzenko.springcourse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ public class MusicPlayer {
     private String name;
     private int volume;
 
-    //IoC
+    @Autowired
     public MusicPlayer(List<Music> musicList) {
         this.musicList = musicList;
     }
@@ -25,11 +26,14 @@ public class MusicPlayer {
     public MusicPlayer() {}
 
 
-    public void playMusic() {
+    public String playMusic() {
+        List<Music> musicList = getMusicList();
+        StringBuilder playlist = new StringBuilder();
         for (Music music : musicList) {
-            System.out.println("Playing music: " + music.getSong());
+            playlist.append(music.getSong());
         }
 
+        return playlist.toString();
     }
 
     public String getName() {
