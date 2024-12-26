@@ -3,56 +3,43 @@ package com.guzenko.springcourse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Random;
 
-@Component("musicPlayer")
+@Component
 public class MusicPlayer {
 
-    private List<Music> musicList = new ArrayList<Music>();
-
-    private String name;
-    private int volume;
+    private ClassicalMusic classicalMusic;
+    private RockMusic rockMusic;
+    private FolkMusic folkMusic;
 
     @Autowired
-    public MusicPlayer(List<Music> musicList) {
-        this.musicList = musicList;
+    public MusicPlayer(ClassicalMusic classicalMusic, RockMusic rockMusic, FolkMusic folkMusic) {
+        this.classicalMusic = classicalMusic;
+        this.rockMusic = rockMusic;
+        this.folkMusic = folkMusic;
     }
 
-    public List<Music> getMusicList() {
-        return musicList;
-    }
+    public void playMusic(MusicGenre genre) {
+        Random random = new Random();
 
-    public MusicPlayer() {}
+        // случайное целое число между 0 и 2
+        int randomNumber = random.nextInt(3);
+
+        if (genre == MusicGenre.CLASSICAL) {
+            // случайная классическая песня
+            System.out.println(classicalMusic.getSongs().get(randomNumber));
+        } else {
+            if (genre == MusicGenre.ROCK) {
+                //случайная рок песня
+                System.out.println(rockMusic.getSongs().get(randomNumber));
+            }
+            else
+            {
+                //случайная фолк песня
+                System.out.println(folkMusic.getSongs().get(randomNumber));
+            }
 
 
-    public String playMusic() {
-        List<Music> musicList = getMusicList();
-        StringBuilder playlist = new StringBuilder();
-        for (Music music : musicList) {
-            playlist.append(music.getSong());
         }
-
-        return playlist.toString();
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getVolume() {
-        return volume;
-    }
-
-    public void setVolume(int volume) {
-        this.volume = volume;
-    }
-
-    public void setMusicList(List<Music> musicList) {
-        this.musicList = musicList;
     }
 }
