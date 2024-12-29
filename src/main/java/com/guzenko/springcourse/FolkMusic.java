@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@Component
 public class FolkMusic implements Music {
     private List<String> songs = new ArrayList<>();
 
@@ -16,7 +15,6 @@ public class FolkMusic implements Music {
         songs.add("Folk 3");
     }
 
-    @Override
     public List<String> getSongs() {
 
         return songs;

@@ -5,8 +5,9 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+//@Component
 public class ClassicalMusic implements Music {
+
     private List<String> songs = new ArrayList<>();
 
     // Блок инициализации объекта (англ. Instance initialization block)
@@ -17,7 +18,6 @@ public class ClassicalMusic implements Music {
         songs.add("Night on Bald Mountain");
     }
 
-    @Override
     public List<String> getSongs() {
 
         return songs;
